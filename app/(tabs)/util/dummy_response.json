@@ -1,0 +1,9 @@
+[
+  { "question": "Do you like the service", "rating": "" },
+  { "question": "Do you like the App", "rating": "" },
+  { "question": "How do you rate transaction", "rating": "" },
+  { "question": "How do you rate the downtime", "rating": "" },
+  { "question": "Do do you rate app performance", "rating": "" },
+  { "question": "Do you rate app experience", "rating": "" },
+  { "question": "Do you rate ease to use the app", "rating": "" }
+]
