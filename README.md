@@ -1,5 +1,4 @@
 Bottom sheet demo app
 
-
-Uploading Screen Recording 2024-09-26 at 6.34.40 PM.mov…
+![Alt Text](https://github.com/amitrai98/bottomsheet/blob/main/demo.gif)
 
