@@ -2,19 +2,15 @@ import React, { useCallback, useRef, useMemo } from "react";
 import { StyleSheet, View, Text, Button, TouchableOpacity } from "react-native";
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import StarRating from "./StarRating";
+import CommentBox from "./CommentBox";
+const questions = require("./util/dummy_response.json");
 
 const BottomSheetModal = () => {
   // hooks
   const sheetRef = useRef<BottomSheet>(null);
   const [rating, setRating] = React.useState(0);
   // variables
-  const data = useMemo(
-    () =>
-      Array(50)
-        .fill(0)
-        .map((_, index) => `index-${index}`),
-    []
-  );
+  const data = useMemo(() => questions, []);
   const snapPoints = useMemo(() => ["25%", "50%", "90%"], []);
 
   // callbacks
@@ -30,16 +26,21 @@ const BottomSheetModal = () => {
 
   // render
   const renderItem = useCallback(
-    (item) => (
-      <View key={item} style={styles.itemContainer}>
-        <Text>{item}</Text>
+    (item, index) => (
+      <View key={item.question} style={styles.itemContainer}>
+        <Text>{index + 1 + ". " + item.question}</Text>
+        <StarRating
+          maxStars={5}
+          initialRating={rating}
+          onRatingChange={(value) => setRating(value)}
+        />
       </View>
     ),
     []
   );
   return (
     <View style={styles.container}>
-      <Button title="Show bottom sheet" onPress={() => handleSnapPress(1)} />
+      <Button title="Rate the Service" onPress={() => handleSnapPress(1)} />
 
       <BottomSheet
         ref={sheetRef}
@@ -54,11 +55,8 @@ const BottomSheetModal = () => {
         </View>
 
         <BottomSheetScrollView contentContainerStyle={styles.contentContainer}>
-          <StarRating
-            maxStars={5}
-            initialRating={rating}
-            onRatingChange={(value) => setRating(value)}
-          />
+          {data.map(renderItem)}
+          <CommentBox />
         </BottomSheetScrollView>
       </BottomSheet>
     </View>
